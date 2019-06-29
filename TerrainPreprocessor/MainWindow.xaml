@@ -1,0 +1,41 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TerrainPreprocessor"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="TerrainPreprocessor.MainWindow"
+        mc:Ignorable="d"
+        ResizeMode="CanResizeWithGrip"
+        Title="MainWindow" Height="500" Width="600">
+    <Grid>
+        <DockPanel Background="FloralWhite" HorizontalAlignment="Stretch" LastChildFill="False" VerticalAlignment="Top" Height="30"  Margin="0,0,-0.4,0" Grid.ColumnSpan="2">
+            <Button DockPanel.Dock="Left" x:Name="SetPath" Content="Set Path" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,10,0,0" Click="SetPath_Click"/>
+            <ComboBox x:Name="comboBox" Height="auto" VerticalAlignment="Top" Width="60" Margin="10,10,0,0" >
+                <ComboBoxItem Content="DSM"></ComboBoxItem>
+                <ComboBoxItem Content="MSK"></ComboBoxItem>
+            </ComboBox>
+            <TextBox DockPanel.Dock="Left" x:Name="Longitude" Text="Longitude" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" IsEnabled="False" GotFocus="TextBox_Focus" LostFocus="TextBox_NotFocus"/>
+            <TextBox DockPanel.Dock="Left" x:Name="Latitude" Text="Latitude" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" IsEnabled="False" GotFocus="TextBox_Focus" LostFocus="TextBox_NotFocus"/>
+            <TextBox DockPanel.Dock="Left" x:Name="Radius" Text="Radius" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" IsEnabled="False" GotFocus="TextBox_Focus" LostFocus="TextBox_NotFocus"/>
+            <Button DockPanel.Dock="Left" x:Name="Process" Content="Process" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,10,0,0" Click="Process_Click" IsEnabled="False"/>
+            <Button DockPanel.Dock="Left" x:Name="Save" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,10,0,0" IsEnabled="False" Click="Save_Click"/>
+        </DockPanel>
+        <DockPanel Background="FloralWhite" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="False" Margin="0,30,0,66" Grid.ColumnSpan="2">
+            <ScrollViewer x:Name="scrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" 
+                          PreviewMouseLeftButtonDown="scrollViewer_PreviewMouseLeftButtonDown"
+                          PreviewMouseMove="scrollViewer_PreviewMouseMove"
+                          PreviewMouseLeftButtonUp="scrollViewer_PreviewMouseLeftButtonUp"
+                          PreviewMouseWheel="scrollViewer_PreviewMouseWheel">
+                <Image x:Name="Image" Height="0" Width="0" VerticalAlignment="Top" Margin="0,0,0,-0.2">
+                    <Image.RenderTransform>
+                        <ScaleTransform x:Name="imageScale"/>
+                    </Image.RenderTransform>
+                </Image>
+            </ScrollViewer>
+        </DockPanel>
+        <DockPanel Background="FloralWhite" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="66"  Margin="0,30,0,0" Grid.ColumnSpan="2">
+            <TextBox VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Stretch" IsReadOnly="True" x:Name="LogWindow" Background="White" Text="Please set the data path first." Margin="10,10,10,10"/>
+        </DockPanel>
+    </Grid>
+</Window>

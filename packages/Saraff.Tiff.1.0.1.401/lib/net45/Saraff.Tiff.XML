@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Saraff.Tiff</name>
+    </assembly>
+    <members>
+        <member name="T:Saraff.Tiff.Automaton.AutomatonBase`1">
+            <summary>
+            Базовый класс контекстов.
+            </summary>
+            <typeparam name="T">Интерфейс автомата.</typeparam>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.AutomatonBase`1.AddEdge(System.Type,System.String,`0)">
+            <summary>
+            Добавляет переход.
+            </summary>
+            <param name="sourceType">Тип исходного состояния.</param>
+            <param name="name">Имя события.</param>
+            <param name="target">Экземпляр целевого состояния.</param>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.AutomatonBase`1.GetState``1">
+            <summary>
+            Возвращает экземпляр состояния.
+            </summary>
+            <typeparam name="TResult">Тип состояния.</typeparam>
+            <returns>Экземпляр состояния.</returns>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.AutomatonBase`1._CreateState``1">
+            <summary>
+            Создает и возвращает экземпляр состояния.
+            </summary>
+            <typeparam name="TResult">Тип состояния.</typeparam>
+            <returns>Экземпляр состояния.</returns>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.AutomatonBase`1._EventHandler(System.Object,Saraff.Tiff.Automaton.AutomatonEventArgs)">
+            <summary>
+            Обработчик событий изменения состояния.
+            </summary>
+            <param name="sender">Истояник события.</param>
+            <param name="e">Аргументы события.</param>
+        </member>
+        <member name="P:Saraff.Tiff.Automaton.AutomatonBase`1.Current">
+            <summary>
+            Возвращает или устанавливает текущее состояние.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.Automaton.AutomatonEventArgs">
+            <summary>
+            Аргументы событий автомата.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.AutomatonEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Saraff.Tiff.Automaton.AutomatonEventArgs"/> class.
+            </summary>
+            <param name="name">Имя события.</param>
+        </member>
+        <member name="P:Saraff.Tiff.Automaton.AutomatonEventArgs.Name">
+            <summary>
+            Возвращает имя события.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.Automaton.StateBase`1">
+            <summary>
+            Базовый класс состояний.
+            </summary>
+            <typeparam name="T">Интерфейс автомата.</typeparam>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.StateBase`1.AddEdge(System.String,`0)">
+            <summary>
+            Добавляет переход.
+            </summary>
+            <param name="eventName">Имя события.</param>
+            <param name="target">Тип состояния.</param>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.StateBase`1.FireEvent(System.String)">
+            <summary>
+            Fires the event.
+            </summary>
+            <param name="eventName">Name of the event.</param>
+        </member>
+        <member name="M:Saraff.Tiff.Automaton.StateBase`1.OnStateChanged(Saraff.Tiff.Automaton.AutomatonEventArgs)">
+            <summary>
+            Raises the <see cref="E:StateChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="!:Saraff.Acs.Core.AutomatonEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Saraff.Tiff.Automaton.StateBase`1.Automaton">
+            <summary>
+            Возвращает или устанавливает контекст.
+            </summary>
+        </member>
+        <member name="E:Saraff.Tiff.Automaton.StateBase`1.StateChanged">
+            <summary>
+            Возникает при изменении состояния.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.Core.TiffHeader">
+            <summary>
+            TIFF header.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffHeader.magic">
+            <summary>
+            Magic number (defines byte order).
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffHeader.version">
+            <summary>
+            TIFF version number.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffHeader.dirOffset">
+            <summary>
+            Byte offset to first directory.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.Core.TiffDirEntry">
+            <summary>
+             TIFF Image File Directories are comprised of a table of field
+             descriptors of the form shown below.  The table is sorted in
+             ascending order by tag.  The values associated with each entry are
+             disjoint and may appear anywhere in the file (so long as they are
+             placed on a word boundary).
+             If the value is 4 bytes or less, then it is placed in the offset
+             field to save space.  If the value is less than 4 bytes, it is
+             left-justified in the offset field.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDirEntry.tag">
+            <summary>
+            Tag id.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDirEntry.type">
+            <summary>
+            Data type.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDirEntry.count">
+            <summary>
+            Number of items; length in spec.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDirEntry.offset">
+            <summary>
+            Byte offset to field data.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.Core.TiffDataType">
+            <summary>
+            Tag data type information.
+            </summary>
+            <remarks>RATIONALs are the ratio of two 32-bit integer values.</remarks>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_NOTYPE">
+            <summary>
+            Placeholder.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_BYTE">
+            <summary>
+            8-bit unsigned integer.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_ASCII">
+            <summary>
+            8-bit bytes w/ last byte null.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_SHORT">
+            <summary>
+            16-bit unsigned integer.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_LONG">
+            <summary>
+            32-bit unsigned integer.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_RATIONAL">
+            <summary>
+            64-bit unsigned fraction.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_SBYTE">
+            <summary>
+            !8-bit signed integer.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_UNDEFINED">
+            <summary>
+            !8-bit untyped data.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_SSHORT">
+            <summary>
+            !16-bit signed integer.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_SLONG">
+            <summary>
+            !32-bit signed integer.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_SRATIONAL">
+            <summary>
+            !64-bit signed fraction.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_FLOAT">
+            <summary>
+            !32-bit IEEE floating point.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_DOUBLE">
+            <summary>
+            !64-bit IEEE floating point.
+            </summary>
+        </member>
+        <member name="F:Saraff.Tiff.Core.TiffDataType.TIFF_IFD">
+            <summary>
+            %32-bit unsigned integer (offset).
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.Core.TiffTags">
+            <summary>
+            TIFF Tag Definitions.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.ITag">
+            <summary>
+            Представляет тег TIFF-файла.
+            Represents tag of TIFF file.
+            </summary>
+        </member>
+        <member name="P:Saraff.Tiff.ITag.TagId">
+            <summary>
+            Возвращает код тега.
+            Get tag id.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.Tag`1">
+            <summary>
+            Тег TIFF-файла.
+            Tag of TIFF file.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.Tag`1.Create(Saraff.Tiff.Core.TiffTags,`0[])">
+            <summary>
+            Создает и возвращает новый экземпляр класса <c>Tag</c>. Creates a new <c>Tag</c> instance.
+            </summary>
+            <param name="tagId">
+            Кол тега. Tag id.
+            </param>
+            <param name="values">Значения тега. Values of tag.</param>
+            <returns>
+            Объект <c>Tag</c>. An <c>Tag</c> object.
+            </returns>
+        </member>
+        <member name="P:Saraff.Tiff.Tag`1.Values">
+            <summary>
+            Возвращает значения тега. Get values of tag.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff._Tag">
+            <summary>
+            Представляет тег TIFF-файла.
+            Represents tag of TIFF file.
+            </summary>
+        </member>
+        <member name="P:Saraff.Tiff._Tag.TagId">
+            <summary>
+            Возвращает код тега.
+            Get tag id.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.TiffHandle">
+            <summary>
+            Дескриптор TIFF-файла. Handle of a TIFF file.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.TiffHandle.Dispose">
+            <summary>
+            Освобождает неуправляемые ресурсы, используемые классом <c>TiffWriter</c>, а при необходимости освобождает также управляемые ресурсы. 
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.TiffHandle.ToString">
+            <summary>
+            Возвращает строку, представляющую текущий объект.
+            Returns a string that represents the current object.
+            </summary>
+            <returns>Строка.</returns>
+        </member>
+        <member name="T:Saraff.Tiff.TiffReader">
+            <summary>
+            Предоставляет средство чтения, обеспечивающее быстрый прямой доступ (без кэширования) к данным TIFF-изображения. 
+            Represents a reader that provides fast, non-cached, forward-only access to TIFF data.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.Create(System.IO.Stream)">
+            <summary>
+            Создает и возвращает новый экземпляр класса <c>TiffReader</c> с использованием указанного потока.
+            Creates a new <c>TiffReader</c> instance using the specified stream.
+            </summary>
+            <param name="stream">
+            Поток, содержащий данные TIFF.
+            The stream containing the TIFF data.
+            </param>
+            <returns>
+            Объект <c>TiffReader</c>, используемый для считывания данных, содержащихся в потоке.
+            An <c>TiffReader</c> object used to read the data contained in the stream.
+            </returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.ReadHeader">
+            <summary>
+            При переопределении в производном классе считывает заголовок TIFF-файла.
+            When overridden in a derived class, reads header of a TIFF file.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.ReadImageFileDirectory">
+            <summary>
+            При переопределении в производном классе считывает директорию файла изображения (IFD).
+            When overridden in a derived class, reads the image file directory (IFD).
+            </summary>
+            <returns>
+            Количество тегов в директории или 0, если все директории были считаны.
+            The number of tags in a directory, or 0 if the directory has been read.
+            </returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.ReadTag">
+            <summary>
+            При переопределении в производном классе считывает тег.
+            When overridden in a derived class, reads the tag.
+            </summary>
+            <returns>
+            Тег или null, если все теги были считаны.
+            Tag, or null, if all the tags were read.
+            </returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.ReadValue">
+            <summary>
+            При переопределении в производном классе считывает значение тега.
+            When overridden in a derived class, reads the value of tag.
+            </summary>
+            <returns>
+            Значение тега или null, если все значения были считаны.
+            Tag value, or null, if all the values ​​have been read.
+            </returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.ReadHandle">
+            <summary>
+            При переопределении в производном классе считывает значение тега и представляет его ввиде дескриптора TIFF-файла.
+            When overridden in a derived class, reads the value of tag and represent it as a handle of a TIFF file.
+            </summary>
+            <returns>
+            Значение тега или null, если все значения были считаны.
+            Tag value, or null, if all the values ​​have been read.
+            </returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.ReadData(Saraff.Tiff.TiffHandle,System.Int64)">
+            <summary>
+            При переопределении в производном классе считывает указанное количество байтов из потока, начиная с заданной точки.
+            When overridden in a derived class, reads the specified number of bytes from the stream, starting from a specified point.
+            </summary>
+            <param name="handle">Дескриптор TIFF-файла. Handle of TIFF file.</param>
+            <param name="count">Количество байтов, чтение которых необходимо выполнить. The number of bytes to read.</param>
+            <returns>Двоичные данные. Binary data.</returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffReader.Dispose">
+            Освобождает неуправляемые ресурсы, используемые классом <c>TiffReader</c>, а при необходимости освобождает также управляемые ресурсы. 
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        </member>
+        <member name="P:Saraff.Tiff.TiffReader.BaseStream">
+            <summary>
+            Предоставляет доступ к базовому потоку <c>TiffReader</c>.
+            Exposes access to the underlying stream of the <c>TiffReader</c>.
+            </summary>
+        </member>
+        <member name="P:Saraff.Tiff.TiffReader.TiffVersion">
+            <summary>
+            Возвращает версию TIFF-файла.
+            Get version of TIFF file.
+            </summary>
+        </member>
+        <member name="T:Saraff.Tiff.TiffWriter">
+            <summary>
+            Предоставляет средство записи, обеспечивающее быстрый прямой доступ (без кэширования) к данным TIFF-изображения. 
+            Represents a writer that provides fast, non-cached, forward-only access to TIFF data.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.TiffWriter.Create(System.IO.Stream)">
+            <summary>
+            Создает и возвращает новый экземпляр класса <c>TiffWriter</c> с использованием указанного потока.
+            Creates a new <c>TiffWriter</c> instance using the specified stream.
+            </summary>
+            <param name="stream">
+            Поток, содержащий данные TIFF.
+            The stream containing the TIFF data.
+            </param>
+            <returns>
+            Объект <c>TiffWriter</c>, используемый для считывания данных, содержащихся в потоке.
+            An <c>TiffWriter</c> object used to read the data contained in the stream.
+            </returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffWriter.Flush">
+            <summary>
+            При переопределении в производном классе сбрасывает в основной поток содержимое буфера, а также очищает основной поток.
+            When overridden in a derived class, flushes whatever is in the buffer to the underlying streams and also flushes the underlying stream.
+            </summary>
+        </member>
+        <member name="M:Saraff.Tiff.TiffWriter.WriteHeader">
+            <summary>
+            При переопределении в производном классе записывает заголовок TIFF-файла.
+            When overridden in a derived class, writes the header of a TIFF file.
+            </summary>
+            <returns>Дескриптор TIFF-файла. Handle of a TIFF file.</returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffWriter.WriteImageFileDirectory(Saraff.Tiff.TiffHandle,System.Collections.ObjectModel.Collection{Saraff.Tiff.ITag})">
+            <summary>
+            При переопределении в производном классе записывает директорию файла изображения (IFD).
+            When overridden in a derived class, writes the image file directory (IFD).
+            </summary>
+            <param name="owner">
+            Владелелец создаваемой директории файла изображения (IFD).
+            Owner of creating the image file directory (IFD).
+            </param>
+            <param name="tags">Коллекция тегов. Collection of the tags.</param>
+            <returns>Дескриптор TIFF-файла. Handle of a TIFF file.</returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffWriter.WriteData(System.Byte[])">
+            <summary>
+            При переопределении в производном классе записывает произвольные двоичные данные.
+            When overridden in a derived class, writes binary data.
+            </summary>
+            <param name="data">Двоичные данные. Binary data.</param>
+            <returns>Дескриптор TIFF-файла. Handle of a TIFF file.</returns>
+        </member>
+        <member name="M:Saraff.Tiff.TiffWriter.Dispose">
+            <summary>
+            Освобождает неуправляемые ресурсы, используемые классом <c>TiffWriter</c>, а при необходимости освобождает также управляемые ресурсы. 
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="P:Saraff.Tiff.TiffWriter.BaseStream">
+            <summary>
+            Предоставляет доступ к базовому потоку <c>TiffWriter</c>.
+            Exposes access to the underlying stream of the <c>TiffWriter</c>.
+            </summary>
+        </member>
+    </members>
+</doc>
